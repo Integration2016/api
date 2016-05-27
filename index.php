@@ -1,14 +1,12 @@
 <?php
 include("methods.php");
 header("Content-Type:application/json");
-    
-    //procces request
-	if (!empty($_GET['method'])) {
-		$result = $_GET['method']();
+    if (function_exists($_GET['method'])) {
+        $result = $_GET['method']();
         if (!empty($result)) {
             deliver_response("succesfull",$result);
         }
-	}
+    }
     else {
     	deliver_response("failed",null);
     }
